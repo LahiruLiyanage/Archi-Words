@@ -5,9 +5,16 @@ import {
 import './App.css'
 import HomePage from "./pages/HomePage.jsx";
 
+const routes = [{
+    path: '/',
+    element: <HomePage />,
+}];
+
+const router = createBrowserRouter(routes);
+
 function App() {
     return (
-        <HomePage/>
+        <RouterProvider router={router} />
     );
 }
 
