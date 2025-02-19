@@ -18,7 +18,7 @@ const routes = [{
     path: '/articles',
     element: <ArticleList />,
 }, {
-    path: '/articles/individuals',
+    path: '/articles/individual',
     element: <ArticlePage />,
 }];
 
