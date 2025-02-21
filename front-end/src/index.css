@@ -16,8 +16,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #f1f1f1;
-    background-color: #2c2c2c;
+    color: #e3e3e3;
+    background-color: #2b2b2b;
   }
   a:hover {
     color: #d8d8d8;
@@ -26,17 +26,22 @@
     background-color: #f9f9f9;
   }
 
+  a:hover {
+    color: #ffffff !important;
+  }
+
   nav {
+    /*filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.67))*/
 
   }
 
   a h3 {
-    color: #f1f1f1;
+    color: #f1f1f1 !important;
     margin-bottom: 0.5em;
   }
 
   a p {
-    color: #666;
+    color: #a1a1a1 !important;
     font-size: 0.9em;
   }
 
@@ -104,6 +109,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
+  border-bottom: 2px solid rgba(214, 214, 214, 0.3)
 }
 
 nav ul {
