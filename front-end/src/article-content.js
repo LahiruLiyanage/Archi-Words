@@ -1,6 +1,6 @@
 const articles = [
     {
-        name: 'sustainable-design',
+        name: 'sd',
         title: 'Principles of Sustainable Architecture',
         content: [
             `Sustainable architecture has become more than just a trend—it's a necessity 
@@ -25,7 +25,7 @@ const articles = [
         ]
     },
     {
-        name: 'modernist-movement',
+        name: 'mm',
         title: 'Understanding Modernist Architecture',
         content: [
             `The Modernist movement revolutionized architecture in the 20th century, 
@@ -48,7 +48,7 @@ const articles = [
         ]
     },
     {
-        name: 'urban-planning',
+        name: 'up',
         title: 'The Future of Urban Planning',
         content: [
             `Urban planning stands at a critical juncture as cities face unprecedented 
