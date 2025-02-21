@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 2rem 1rem;
   text-align: left;
@@ -11,7 +11,12 @@
   margin-left: 10px;
   will-change: filter;
   transition: filter 300ms;
-  font-family: 'Lobster', cursive; /* Apply special font */
+  /*font-family: 'Lobster', cursive; !* Apply special font *!*/
+  /*font-family: 'Playfair Display', serif;*/
+  /*font-family: 'Architects Daughter', cursive;*/
+  font-family: "Matemasie", serif;
+  /*font-family: "Permanent Marker", serif;*/
+
   font-size: 30px;
   color: white;
 }
