@@ -1,30 +1,25 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1rem;
+  text-align: left;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  /*height: 6em;*/
+  /*padding: 1.5em;*/
+  margin-left: 10px;
   will-change: filter;
   transition: filter 300ms;
+  font-family: 'Lobster', cursive; /* Apply special font */
+  font-size: 30px;
+  color: white;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em rgba(211, 211, 228, 0.67));
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  filter: drop-shadow(0 0 1em rgba(212, 220, 223, 0.67));
 }
 
 @media (prefers-reduced-motion: no-preference) {
