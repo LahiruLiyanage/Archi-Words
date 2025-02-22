@@ -38,11 +38,17 @@ app.get('/api/articles/:name', async (req, res) => {
    res.json(article);
 });
 
-app.post('/api/articles/:name/upvote', (req, res) => {
-    const article = articleInfo.find(article => article.name === req.params.name);
-    article.upvotes += 1;
+app.post('/api/articles/:name/upvote', async (req, res) => {
+    const { name } = req.params;
 
-    res.json(article);
+    const updatedArticle = await db.collection('articles').findOneAndUpdate({ name }, {
+        $inc: { upvotes: 1 }
+    }, {
+        returnDocument: "after"
+    });
+
+    res.json(updatedArticle)
+
 });
 
 app.post('/api/articles/:name/comments', (req, res) => {
