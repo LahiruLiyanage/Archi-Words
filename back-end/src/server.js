@@ -8,6 +8,10 @@ app.get('/hello', function(req, res) {
     res.send('Hello from GET!');
 });
 
+app.get('/hello/:name', function(req, res) {
+    res.send('Hello, ' + req.params.name);
+})
+
 app.post('/hello', function(req, res) {
     res.send('Hello, ' + req.body.name + ' from POST!');
 })
