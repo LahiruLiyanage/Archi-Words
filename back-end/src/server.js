@@ -11,22 +11,27 @@ const app = express();
 
 app.use(express.json());
 
+let db;
+
+async function connectToDB() {
+
+    const uri = 'mongodb://mongo:mongo@localhost:27017/?authSource=admin';
+
+    const client = new MongoClient(uri, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
+
+    await client.connect();
+
+    db = client.db('full-stack-react-db');
+}
+
 app.get('/api/articles/:name', async (req, res) => {
    const { name } = req.params;
-
-   const uri = 'mongodb://localhost:27017';
-
-   const client = new MongoClient(uri, {
-       serverApi: {
-           version: ServerApiVersion.v1,
-           strict: true,
-           deprecationErrors: true,
-       }
-   });
-
-   await client.connect();
-
-   const db = client.db('full-stack-react-db');
 
    const article = await db.collection('articles').findOne({ name });
 
@@ -54,6 +59,12 @@ app.post('/api/articles/:name/comments', (req, res) => {
     res.json(article);
 })
 
-app.listen(8000, function() {
-    console.log('Express server is listening on port 8000');
-});
+async function start() {
+    await connectToDB();
+
+    app.listen(8000, function() {
+        console.log('Express server is listening on port 8000');
+    });
+}
+
+start();
