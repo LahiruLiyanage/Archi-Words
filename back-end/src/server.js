@@ -1,4 +1,5 @@
 import express from 'express';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
 const articleInfo = [
     { name: 'sd', upvotes: 0, comments: [] },
@@ -9,6 +10,28 @@ const articleInfo = [
 const app = express();
 
 app.use(express.json());
+
+app.get('/api/articles/:name', async (req, res) => {
+   const { name } = req.params;
+
+   const uri = 'mongodb://localhost:27017';
+
+   const client = new MongoClient(uri, {
+       serverApi: {
+           version: ServerApiVersion.v1,
+           strict: true,
+           deprecationErrors: true,
+       }
+   });
+
+   await client.connect();
+
+   const db = client.db('full-stack-react-db');
+
+   const article = await db.collection('articles').findOne({ name });
+
+   res.json(article);
+});
 
 app.post('/api/articles/:name/upvote', (req, res) => {
     const article = articleInfo.find(article => article.name === req.params.name);
