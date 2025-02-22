@@ -27,8 +27,8 @@ const routes = [{
     }, {
         path: '/articles/:name',    // Article names
         element: <ArticlePage />,
-        loader: async function() {
-            const response = await axios.get('/api/articles/mm');
+        loader: async function({ params: { name } }) {
+            const response = await axios.get('/api/articles/' + name);
             const { upvotes, comments } = response.data;
             return { upvotes, comments };
         }
