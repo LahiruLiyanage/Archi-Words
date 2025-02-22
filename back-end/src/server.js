@@ -1,19 +1,20 @@
 import express from 'express';
 
+const articleInfo = [
+    { name: 'sd', upvotes: 0 },
+    { name: 'mm', upvotes: 0 },
+    { name: 'up', upvotes: 0 },
+]
+
 const app = express();
 
 app.use(express.json());
 
-app.get('/hello', function(req, res) {
-    res.send('Hello from GET!');
-});
+app.post('/api/articles/:name/upvote', (req, res) => {
+    const article = articleInfo.find(article => article.name === req.params.name);
+    article.upvotes += 1;
 
-app.get('/hello/:name', function(req, res) {
-    res.send('Hello, ' + req.params.name);
-})
-
-app.post('/hello', function(req, res) {
-    res.send('Hello, ' + req.body.name + ' from POST!');
+    res.send('Success! The article ' + req.params.name + ' now has ' + article.upvotes + ' upvotes.');
 })
 
 app.listen(8000, function() {
