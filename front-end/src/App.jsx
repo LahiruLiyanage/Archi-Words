@@ -6,7 +6,7 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage';
 import ArticlesListPage from './pages/ArticleListPage.jsx';
-import ArticlePage, { loader as articleLoader } from './pages/ArticlePage';
+import ArticlePage, { articleLoader } from './pages/ArticlePage';
 import Layout from './Layout';
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import axios from "axios";
