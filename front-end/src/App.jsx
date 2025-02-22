@@ -9,6 +9,7 @@ import ArticlesListPage from './pages/ArticleListPage.jsx';
 import ArticlePage from './pages/ArticlePage';
 import Layout from './Layout';
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import axios from "axios";
 
 const routes = [{
     path: '/',
@@ -25,7 +26,12 @@ const routes = [{
         element: <ArticlesListPage />
     }, {
         path: '/articles/:name',    // Article names
-        element: <ArticlePage />
+        element: <ArticlePage />,
+        loader: async function() {
+            const response = await axios.get('/api/articles/mm');
+            const { upvotes, comments } = response.data;
+            return { upvotes, comments };
+        }
     }]
 }]
 
