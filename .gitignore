@@ -4,6 +4,8 @@
 *.ipr
 *.iws
 out/
+
+# Ignore environment files
 .env
 
 # VS Code

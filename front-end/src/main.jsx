@@ -10,12 +10,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBoowHD3jr81ut92AFZs1TGAIty8R3NuvM",
-    authDomain: "full-stack-react-3119c.firebaseapp.com",
-    projectId: "full-stack-react-3119c",
-    storageBucket: "full-stack-react-3119c.firebasestorage.app",
-    messagingSenderId: "439704106810",
-    appId: "1:439704106810:web:c656a9a61636219b800203"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
@@ -25,4 +25,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
   </StrictMode>,
-)
+);
+
+export default app;
