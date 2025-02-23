@@ -47,3 +47,5 @@ export default function CreateAccountPage() {
         </>
     );
 }
+
+// SetUp the Firebase Authentication
