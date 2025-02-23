@@ -48,12 +48,12 @@ app.post('/api/articles/:name/upvote', async (req, res) => {
 app.post('/api/articles/:name/comments', async (req, res) => {
     const { name } = req.params;
     const { postedBy, text } = req.body;
-    const newComment = {postedBy, text};
+    const newComment = { postedBy, text };
 
     const updatedArticle = await db.collection('articles').findOneAndUpdate({ name }, {
         $push: { comments: newComment }
     }, {
-        returnDocument: "after"
+        returnDocument: 'after',
     });
 
     res.json(updatedArticle);
