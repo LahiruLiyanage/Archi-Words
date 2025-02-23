@@ -9,7 +9,8 @@ import ArticlesListPage from './pages/ArticleListPage.jsx';
 import ArticlePage, { articleLoader } from './pages/ArticlePage';
 import Layout from './Layout';
 import NotFoundPage from "./pages/NotFoundPage.jsx";
-import axios from "axios";
+import LoginPage from "./pages/LoginPage.jsx";
+import CreateAccountPage from "./pages/CreateAccountPage.jsx";
 
 const routes = [{
     path: '/',
@@ -28,6 +29,12 @@ const routes = [{
         path: '/articles/:name',    // Article names
         element: <ArticlePage />,
         loader: articleLoader,
+    }, {
+        path: '/login',
+        element: <LoginPage />,
+    }, {
+        path: '/create-account',
+        element: <CreateAccountPage />,
     }]
 }]
 
