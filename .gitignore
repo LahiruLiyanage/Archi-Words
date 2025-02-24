@@ -8,6 +8,9 @@ out/
 # Ignore environment files
 .env
 
+#Credentials
+back-end/credentials.json
+
 # VS Code
 .vscode/
 
