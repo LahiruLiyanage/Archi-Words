@@ -54,15 +54,25 @@ app.use(async function(req, res, next) {
 
 app.post('/api/articles/:name/upvote', async (req, res) => {
     const { name } = req.params;
+    const { uid } = req.user;
 
-    const updatedArticle = await db.collection('articles').findOneAndUpdate({ name }, {
-        $inc: { upvotes: 1 }
-    }, {
-        returnDocument: "after"
-    });
+    const article = await db.collection('articles').findOne({ name });
 
-    res.json(updatedArticle)
+    const upvoteIds = article.upvoteIds || [];
+    const canUpvote = uid && !upvoteIds.includes(uid);
 
+    if (canUpvote) {
+        const updatedArticle = await db.collection('articles').findOneAndUpdate({ name }, {
+            $inc: { upvotes: 1 },
+            $push: { upvoteId: uid },
+        }, {
+            returnDocument: "after"
+        });
+
+        res.json(updatedArticle)
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 app.post('/api/articles/:name/comments', async (req, res) => {
