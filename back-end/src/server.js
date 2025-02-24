@@ -42,6 +42,16 @@ app.get('/api/articles/:name', async (req, res) => {
    res.json(article);
 });
 
+app.use(async function(req, res, next) {
+    const { authtoken} = req.headers;
+        const user = await admin.auth().verifyIdToken(authtoken);
+    if (authtoken) {
+        res.sendStatus(400);
+    }
+
+    next();
+});
+
 app.post('/api/articles/:name/upvote', async (req, res) => {
     const { name } = req.params;
 
