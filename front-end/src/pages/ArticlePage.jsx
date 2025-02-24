@@ -6,6 +6,7 @@ import CommentsList from "../CommentsList.jsx";
 import AddCommentForm from "../AddCommentForm.jsx";
 
 export default function ArticlePage() {
+
     const { name } = useParams();
     const { upvotes: initialUpvotes, comments: initialComments } = useLoaderData();
     const [upvotes, setUpvotes] = useState(initialUpvotes);
