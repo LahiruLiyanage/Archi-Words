@@ -1,7 +1,7 @@
 import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import admin from 'firebase-admin';
-import fs from 'fs';
+import * as fs from "node:fs";
 
 const credentials = JSON.parse(
     fs.readFileSync('./credentials.json', 'utf8')
@@ -35,21 +35,21 @@ async function connectToDB() {
 }
 
 app.get('/api/articles/:name', async (req, res) => {
-   const { name } = req.params;
-
-   const article = await db.collection('articles').findOne({ name });
-
-   res.json(article);
+    const { name } = req.params;
+    const article = await db.collection('articles').findOne({ name });
+    res.json(article);
 });
 
 app.use(async function(req, res, next) {
-    const { authtoken} = req.headers;
-        const user = await admin.auth().verifyIdToken(authtoken);
+    const { authtoken } = req.headers;
+
     if (authtoken) {
+        const user = await admin.auth().verifyIdToken(authtoken);
+        req.user = user;
+        next();
+    } else {
         res.sendStatus(400);
     }
-
-    next();
 });
 
 app.post('/api/articles/:name/upvote', async (req, res) => {
@@ -66,10 +66,10 @@ app.post('/api/articles/:name/upvote', async (req, res) => {
             $inc: { upvotes: 1 },
             $push: { upvoteId: uid },
         }, {
-            returnDocument: "after"
+            returnDocument: "after",
         });
 
-        res.json(updatedArticle)
+        res.json(updatedArticle);
     } else {
         res.sendStatus(403);
     }
@@ -91,7 +91,6 @@ app.post('/api/articles/:name/comments', async (req, res) => {
 
 async function start() {
     await connectToDB();
-
     app.listen(8000, function() {
         console.log('Express server is listening on port 8000');
     });
