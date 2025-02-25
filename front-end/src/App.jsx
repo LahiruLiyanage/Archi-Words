@@ -6,11 +6,11 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage';
 import ArticlesListPage from './pages/ArticleListPage.jsx';
-import ArticlePage, { articleLoader } from './pages/ArticlePage';
+import ArticlePage, { loader as articleLoader } from './pages/ArticlePage';
 import Layout from './Layout';
-import NotFoundPage from "./pages/NotFoundPage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import CreateAccountPage from "./pages/CreateAccountPage.jsx";
+import NotFoundPage from './pages/NotFoundPage';
+import LoginPage from './pages/LoginPage';
+import CreateAccountPage from './pages/CreateAccountPage';
 
 const routes = [{
     path: '/',
@@ -26,7 +26,7 @@ const routes = [{
         path: '/articles',
         element: <ArticlesListPage />
     }, {
-        path: '/articles/:name',    // Article names
+        path: '/articles/:name', // -> /articles/learn-react
         element: <ArticlePage />,
         loader: articleLoader,
     }, {
@@ -34,7 +34,7 @@ const routes = [{
         element: <LoginPage />,
     }, {
         path: '/create-account',
-        element: <CreateAccountPage />,
+        element: <CreateAccountPage />
     }]
 }]
 
